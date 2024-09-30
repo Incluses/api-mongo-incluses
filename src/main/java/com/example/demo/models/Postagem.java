@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +10,8 @@ import java.sql.Date;
 import java.util.List;
 
 @AllArgsConstructor
+@Getter
+@Setter
 @Document(collection = "postagem")
 public class Postagem {
     @Id // Indica que este é o campo que representa o ID

@@ -1,12 +1,16 @@
 package com.example.demo.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Date;
 import java.util.List;
 
 @AllArgsConstructor
+@Getter
+@Setter
 @Document(collection = "conversas")
 public class Conversa {
     private String id; // Você pode usar String para o ID no MongoDB

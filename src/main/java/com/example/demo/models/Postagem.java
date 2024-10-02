@@ -24,6 +24,8 @@ public class Postagem {
     private List<Like> likes; // Classe aninhada para representar likes
     private List<Comentario> comentarios; // Classe aninhada para representar comentários
 
+    @Getter
+    @Setter
     public static class Like {
         private Integer perfilId;
         private Date dataLike;
@@ -31,6 +33,8 @@ public class Postagem {
         // Getters e Setters
     }
 
+    @Getter
+    @Setter
     public static class Comentario {
         private Integer perfilId;
         private String comentario;

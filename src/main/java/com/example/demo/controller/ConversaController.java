@@ -16,7 +16,7 @@ public class ConversaController {
     private ConversaService conversaService;
 
     // Criar uma nova conversa
-    @PostMapping
+    @PostMapping("/inserir")
     public ResponseEntity<Conversa> criarConversa(@RequestBody Conversa conversa) {
         Conversa novaConversa = conversaService.criarConversa(conversa);
         return ResponseEntity.status(201).body(novaConversa);

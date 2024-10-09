@@ -23,7 +23,7 @@ public class PostagemController {
     }
 
     // Listar todas as postagens
-    @GetMapping
+    @GetMapping("/listar")
     public List<Postagem> listarPostagens() {
         return postagemService.listarPostagens();
     }

@@ -1,4 +1,4 @@
-FROM openjdk:22-jdk-bullseye as build
+FROM openjdk:17-jdk-bullseye as build
 
 WORKDIR /app
 
@@ -14,11 +14,11 @@ COPY src src
 RUN ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:22-jdk-bullseye as production
+FROM openjdk:17-jdk-bullseye as production
 ARG DEPENDENCY=/app/target/dependency
 
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java", "-cp", "app:app/lib/*","project.interdisciplinary.incluses.InclusesApiApplication"]
+ENTRYPOINT ["java", "-cp", "app:app/lib/*","com.example.demo.DemoApplication"]

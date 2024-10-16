@@ -21,7 +21,6 @@ public class ConversaController {
         Conversa novaConversa = conversaService.criarConversa(conversa);
         return ResponseEntity.status(201).body(novaConversa);
     }
-
     // Listar todas as conversas
     @GetMapping
     public List<Conversa> listarConversas() {

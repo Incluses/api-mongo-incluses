@@ -16,14 +16,14 @@ public class FuncaoController {
     private FuncaoService funcaoService;
 
     // Criar uma nova função
-    @PostMapping
+    @PostMapping("/inserir")
     public ResponseEntity<Funcao> criarFuncao(@RequestBody Funcao funcao) {
         Funcao novaFuncao = funcaoService.criarFuncao(funcao);
         return ResponseEntity.status(201).body(novaFuncao);
     }
 
     // Listar todas as funções
-    @GetMapping
+    @GetMapping("/listar")
     public List<Funcao> listarFuncoes() {
         return funcaoService.listarFuncoes();
     }

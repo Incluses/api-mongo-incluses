@@ -22,7 +22,7 @@ public class ConversaController {
         return ResponseEntity.status(201).body(novaConversa);
     }
     // Listar todas as conversas
-    @GetMapping
+    @GetMapping("/listar")
     public List<Conversa> listarConversas() {
         return conversaService.listarConversas();
     }

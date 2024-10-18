@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +24,10 @@ public class Conversa {
 
     // Getters e Setters
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
     public static class Participante {
         private Integer perfilId;
         private Date adicionadoEm;
@@ -30,6 +35,10 @@ public class Conversa {
         // Getters e Setters
     }
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
     public static class Mensagem {
         private Integer perfilId;
         private String conteudo;

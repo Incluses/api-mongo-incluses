@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
@@ -14,7 +15,11 @@ import java.util.List;
 @Document(collection = "funcoes")
 public class Funcao {
     @Id // Indica que este é o campo que representa o ID
-    private String id; // Você pode usar String para o ID no MongoDB
+    private UUID id; // Você pode usar String para o ID no MongoDB
     private String nome;
     private List<Integer> userIds;
+
+    public Funcao() {
+        this.id = UUID.randomUUID();  // Gera um UUID automaticamente
+    }
 }

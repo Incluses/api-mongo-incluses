@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/postagem")
@@ -30,7 +31,7 @@ public class PostagemController {
 
     // Obter uma postagem por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Postagem> obterPostagem(@PathVariable String id) {
+    public ResponseEntity<Postagem> obterPostagem(@PathVariable UUID id) {
         return postagemService.obterPostagem(id)
                 .map(postagem -> ResponseEntity.ok(postagem))
                 .orElse(ResponseEntity.notFound().build());
@@ -38,11 +39,33 @@ public class PostagemController {
 
     // Deletar uma postagem
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPostagem(@PathVariable String id) {
+    public ResponseEntity<Void> deletarPostagem(@PathVariable UUID id) {
         if (postagemService.deletarPostagem(id)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/like")
+    public ResponseEntity<String> addLike(@RequestParam("id_user") UUID idUser, @RequestParam("id_postagem") UUID idPostagem) {
+        return postagemService.addLike(idUser, idPostagem);
+    }
+
+    @PostMapping("/comentar")
+    public ResponseEntity<String> addComentario(@RequestParam("id_user") UUID idUser, @RequestParam("id_postagem") UUID idPostagem, @RequestParam("comentario") String comentario) {
+        return postagemService.addComentario(idUser, idPostagem, comentario);
+    }
+
+    @DeleteMapping("/removerlike")
+    public ResponseEntity<String> removerLike(@RequestParam("id_user") UUID idUser, @RequestParam("id_postagem") UUID idPostagem) {
+        return postagemService.removerLike(idUser, idPostagem);
+    }
+
+    @GetMapping("/listarPostagemByIdUser")
+    public List<Postagem> listarPostagemByIdUser(@RequestParam("id_user") UUID idUser) {
+        return postagemService.listarPostagem(idUser);
+    }
+
+
 }

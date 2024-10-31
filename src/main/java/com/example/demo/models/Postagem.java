@@ -28,7 +28,7 @@ public class Postagem {
     private List<Comentario> comentarios;
 
     public Postagem() {
-        this.id = UUID.randomUUID(); // Gerar como String
+        this.id = UUID.randomUUID();
         this.likes = new ArrayList<>();
         this.comentarios = new ArrayList<>();
     }
@@ -42,6 +42,10 @@ public class Postagem {
         private UUID perfilId;
         private Date dataLike;
 
+        public Like() {
+            this.id = UUID.randomUUID();
+        }
+
     }
 
     @Getter
@@ -51,6 +55,10 @@ public class Postagem {
         private UUID id;
         private UUID perfilId;
         private String comentario;
+
+        public Comentario() {
+            this.id = UUID.randomUUID();
+        }
 
     }
 }

@@ -50,14 +50,28 @@ public class PostagemService {
         if (postagemOptional.isPresent()) {
             Postagem postagem = postagemOptional.get();
 
+            Optional<Postagem.Like> existingLikeOptional = postagem.getLikes().stream()
+                    .filter(like -> like.getPerfilId().equals(idUser))
+                    .findFirst();
+
             Postagem.Like novoLike = new Postagem.Like();
             novoLike.setPerfilId(idUser);
             novoLike.setDataLike(new Date());
 
-            postagem.getLikes().add(novoLike);
 
-            postagemRepository.save(postagem);
-            return ResponseEntity.ok("Like adicionado com sucesso!");
+            if (existingLikeOptional.isPresent()) {
+
+                Postagem.Like existingLike = existingLikeOptional.get();
+                existingLike.setDataLike(novoLike.getDataLike());
+
+                postagemRepository.save(postagem);
+                return ResponseEntity.ok("Like atualizado com sucesso!");
+            } else {
+
+                postagem.getLikes().add(novoLike);
+                postagemRepository.save(postagem);
+                return ResponseEntity.ok("Like adicionado com sucesso!");
+            }
         } else {
             throw new RuntimeException("Postagem não encontrada com o ID: " + idPostagem);
         }

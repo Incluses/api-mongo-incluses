@@ -67,5 +67,8 @@ public class PostagemController {
         return postagemService.listarPostagem(idUser);
     }
 
-
+    @GetMapping("/verificarLike")
+    public boolean verificarLike(@RequestParam("id_user") UUID id_user,@RequestParam("id_postagem") UUID id_postagem){
+        return postagemService.verificarLike(id_user,id_postagem);
+    }
 }

@@ -108,5 +108,17 @@ public class PostagemService {
             throw new RuntimeException("Postagem não encontrada com o ID: " + idUser);
         }}
 
+    public boolean verificarLike(UUID idUser, UUID idPostagem) {
+        Optional<Postagem> postagemOptional = postagemRepository.findById(idPostagem);
+        if (postagemOptional.isPresent()) {
+            Postagem postagem = postagemOptional.get();
+            for (Postagem.Like like : postagem.getLikes()) {
+                if (like.getPerfilId().equals(idUser)) {
+                    return true;
+                }
+            }
+        }
+        return false;}
+
     }
 

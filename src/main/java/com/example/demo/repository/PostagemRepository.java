@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface PostagemRepository extends MongoRepository<Postagem, UUID> {
     Optional<List<Postagem>> findByPerfilId(UUID perfilId);
+
 }

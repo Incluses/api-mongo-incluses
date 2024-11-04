@@ -58,8 +58,8 @@ public class PostagemController {
     }
 
     @DeleteMapping("/removerlike")
-    public ResponseEntity<String> removerLike(@RequestParam("id_user") UUID idUser, @RequestParam("id_postagem") UUID idPostagem) {
-        return postagemService.removerLike(idUser, idPostagem);
+    public ResponseEntity<String> removerLike(@RequestParam("id_user") String idUser, @RequestParam("id_postagem") String idPostagem) {
+        return postagemService.removerLike(UUID.fromString(idUser), UUID.fromString(idPostagem));
     }
 
     @GetMapping("/listarPostagemByIdUser")
